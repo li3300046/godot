@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://7btinj53grh"]
+
+[ext_resource type="Script" uid="uid://bch01pacxihcx" path="res://scripts/game.gd" id="1_game"]
+
+[node name="ArenaSurvivorDemo" type="Node2D" unique_id=979805481]
+script = ExtResource("1_game")

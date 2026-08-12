@@ -1,0 +1,17 @@
+# Godot 4 generated import/cache directory
+.godot/
+
+# Generated per-resource import metadata
+*.import
+
+# Exported builds
+builds/
+exports/
+
+# OS/editor noise
+.DS_Store
+Thumbs.db
+desktop.ini
+*.tmp
+*.log
+
