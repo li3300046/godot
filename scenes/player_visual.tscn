@@ -1,0 +1,139 @@
+[gd_scene load_steps=7 format=3]
+
+[ext_resource type="Texture2D" path="res://icon.svg" id="1_body"]
+[ext_resource type="Texture2D" path="res://assets/kenney_ui/arrowBeige_right.png" id="2_arrow"]
+
+[sub_resource type="Animation" id="Animation_RESET"]
+resource_name = "RESET"
+length = 0.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BodySprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {"times": PackedFloat32Array(0), "transitions": PackedFloat32Array(1), "update": 0, "values": [Vector2(0, 0)]}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BodySprite:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {"times": PackedFloat32Array(0), "transitions": PackedFloat32Array(1), "update": 0, "values": [Vector2(0.27, 0.27)]}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("BodySprite:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {"times": PackedFloat32Array(0), "transitions": PackedFloat32Array(1), "update": 0, "values": [Color(1, 0.82, 0.45, 1)]}
+
+[sub_resource type="Animation" id="Animation_idle"]
+resource_name = "idle"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BodySprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {"times": PackedFloat32Array(0, 0.4, 0.8), "transitions": PackedFloat32Array(1, 1, 1), "update": 0, "values": [Vector2(0.27, 0.27), Vector2(0.28, 0.26), Vector2(0.27, 0.27)]}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BodySprite:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {"times": PackedFloat32Array(0), "transitions": PackedFloat32Array(1), "update": 0, "values": [Vector2(0, 0)]}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("BodySprite:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {"times": PackedFloat32Array(0), "transitions": PackedFloat32Array(1), "update": 0, "values": [Color(1, 0.82, 0.45, 1)]}
+
+[sub_resource type="Animation" id="Animation_moving"]
+resource_name = "moving"
+length = 0.3
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BodySprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {"times": PackedFloat32Array(0, 0.15, 0.3), "transitions": PackedFloat32Array(1, 1, 1), "update": 0, "values": [Vector2(0, 1), Vector2(0, -4), Vector2(0, 1)]}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BodySprite:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {"times": PackedFloat32Array(0, 0.15, 0.3), "transitions": PackedFloat32Array(1, 1, 1), "update": 0, "values": [Vector2(0.28, 0.25), Vector2(0.26, 0.29), Vector2(0.28, 0.25)]}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("BodySprite:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {"times": PackedFloat32Array(0), "transitions": PackedFloat32Array(1), "update": 0, "values": [Color(1, 0.82, 0.45, 1)]}
+
+[sub_resource type="Animation" id="Animation_hurt"]
+resource_name = "hurt"
+length = 0.45
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BodySprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {"times": PackedFloat32Array(0, 0.09, 0.18), "transitions": PackedFloat32Array(1, 1, 1), "update": 0, "values": [Color(1, 0.25, 0.25, 1), Color(1, 1, 1, 0.25), Color(1, 0.25, 0.25, 1)]}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BodySprite:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {"times": PackedFloat32Array(0), "transitions": PackedFloat32Array(1), "update": 0, "values": [Vector2(0.3, 0.24)]}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("BodySprite:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {"times": PackedFloat32Array(0), "transitions": PackedFloat32Array(1), "update": 0, "values": [Vector2(0, 0)]}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_player"]
+_data = {&"RESET": SubResource("Animation_RESET"), &"hurt": SubResource("Animation_hurt"), &"idle": SubResource("Animation_idle"), &"moving": SubResource("Animation_moving")}
+
+[node name="PlayerVisual" type="Node2D"]
+
+[node name="AimArrow" type="Sprite2D" parent="."]
+position = Vector2(31, 0)
+scale = Vector2(0.55, 0.55)
+texture = ExtResource("2_arrow")
+modulate = Color(1, 1, 1, 0.8)
+
+[node name="BodySprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_body")
+scale = Vector2(0.27, 0.27)
+modulate = Color(1, 0.82, 0.45, 1)
+
+[node name="StateLabel" type="Label" parent="."]
+offset_left = -31.0
+offset_top = -48.0
+offset_right = 31.0
+offset_bottom = -25.0
+theme_override_colors/font_color = Color(0.82, 0.9, 1, 0.9)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.8)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_font_sizes/font_size = 12
+text = "IDLE"
+horizontal_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {&"": SubResource("AnimationLibrary_player")}

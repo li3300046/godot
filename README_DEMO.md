@@ -42,3 +42,5 @@
 主场景是 `main.tscn`。
 
 更详细的素材、九宫格、布局容器和鼠标信号说明见 `UI_LEARNING_GUIDE.md`。
+
+`.tscn` UI、纯代码 UI 的混合方式及 Git diff 练习见 `TSCN_UI_GIT_GUIDE.md`。

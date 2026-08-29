@@ -6,10 +6,14 @@ const BulletScript = preload("res://scripts/bullet.gd")
 const GemScript = preload("res://scripts/xp_gem.gd")
 const HUDScript = preload("res://scripts/hud.gd")
 const CharacterStatusScript = preload("res://scripts/character_status_ui.gd")
+const QuickStatusScene = preload("res://scenes/ui/quick_status_card.tscn")
 
 var player: SurvivorPlayer
 var hud: GameHUD
 var character_status_ui: CharacterStatusUI
+# 不标注 QuickStatusCard：这个对象来自 PackedScene，避免 game.gd 在解析阶段
+# 依赖新脚本的全局 class_name 注册顺序。
+var quick_status_card
 var enemies: Array[ChaserEnemy] = []
 var bullets: Array[AutoBullet] = []
 var gems: Array[ExperienceGem] = []
@@ -60,6 +64,11 @@ func _ready() -> void:
 	character_status_ui = CharacterStatusScript.new()
 	character_status_ui.configure(player, self)
 	add_child(character_status_ui)
+	# 混合 UI：实例化编辑器制作的 .tscn，再连接到代码创建的详细面板。
+	quick_status_card = QuickStatusScene.instantiate()
+	quick_status_card.configure(player, self)
+	quick_status_card.details_requested.connect(character_status_ui.open_panel)
+	add_child(quick_status_card)
 
 
 func _process(delta: float) -> void:
@@ -144,6 +153,7 @@ func _fire_weapon() -> void:
 	if nearest == null:
 		return
 	var base_direction := player.global_position.direction_to(nearest.global_position)
+	player.set_aim_direction(base_direction)
 	var spread := deg_to_rad(10.0)
 	for i in bullet_count:
 		var offset := (i - (bullet_count - 1) / 2.0) * spread

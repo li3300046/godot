@@ -315,6 +315,10 @@ func toggle_panel() -> void:
 	panel.visible = not panel.visible
 
 
+func open_panel() -> void:
+	panel.show()
+
+
 func close_panel() -> void:
 	panel.hide()
 

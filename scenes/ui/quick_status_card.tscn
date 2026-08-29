@@ -1,0 +1,80 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/quick_status_card.gd" id="1_script"]
+
+[sub_resource type="StyleBoxFlat" id="StylePanel"]
+bg_color = Color(0.08, 0.105, 0.16, 0.94)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.32, 0.7, 0.91, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_color = Color(0, 0, 0, 0.35)
+shadow_size = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleHealthBackground"]
+bg_color = Color(0.12, 0.08, 0.11, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleHealthFill"]
+bg_color = Color(0.91, 0.25, 0.36, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[node name="QuickStatusCard" type="CanvasLayer"]
+process_mode = 3
+layer = 1
+script = ExtResource("1_script")
+
+[node name="Panel" type="PanelContainer" parent="."]
+offset_left = 432.0
+offset_top = 16.0
+offset_right = 720.0
+offset_bottom = 112.0
+theme_override_styles/panel = SubResource("StylePanel")
+
+[node name="Margin" type="MarginContainer" parent="Panel"]
+theme_override_constants/margin_left = 14
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 14
+theme_override_constants/margin_bottom = 10
+
+[node name="Rows" type="VBoxContainer" parent="Panel/Margin"]
+theme_override_constants/separation = 5
+
+[node name="Header" type="HBoxContainer" parent="Panel/Margin/Rows"]
+
+[node name="Title" type="Label" parent="Panel/Margin/Rows/Header"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(1, 0.9, 0.57, 1)
+theme_override_font_sizes/font_size = 17
+text = "场景 UI · 快速状态"
+
+[node name="DetailsButton" type="Button" parent="Panel/Margin/Rows/Header"]
+layout_mode = 2
+tooltip_text = "这个按钮在 .tscn 中创建，由脚本连接 pressed 信号"
+text = "详细"
+
+[node name="HealthBar" type="ProgressBar" parent="Panel/Margin/Rows"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+value = 100.0
+show_percentage = false
+theme_override_styles/background = SubResource("StyleHealthBackground")
+theme_override_styles/fill = SubResource("StyleHealthFill")
+
+[node name="Stats" type="Label" parent="Panel/Margin/Rows"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.78, 0.86, 0.96, 1)
+text = "生命 100/100    伤害 13    波次 1"
+horizontal_alignment = 1
